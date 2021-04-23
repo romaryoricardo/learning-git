@@ -1,18 +1,18 @@
 format_version: 10
 pipelines:
-  MyPipe:
+  git-learning:
     group: My-Pipelines
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
     materials:
-      git-c19ba43:
+      git-38f2afa:
         git: https://github.com/romaryoricardo/learning-git
         shallow_clone: false
         auto_update: true
         branch: master
     stages:
-    - Prod:
+    - Build:
         fetch_materials: true
         keep_artifacts: false
         clean_workspace: false
@@ -20,23 +20,13 @@ pipelines:
           type: success
           allow_only_on_success: false
         jobs:
-          Build:
+          build-app:
             timeout: 0
-            secure_variables:
-              NAME: AES:b4R6Kpf20x6tFMkPk/5qTw==:lyOzeBHkF25MEFp9kuuXRg==
+            environment_variables:
+              NAME: Romaryo
             tasks:
             - exec:
                 arguments:
-                - {{NAME}}
+                - Build ${NAME}
                 command: echo
-                run_if: passed
-            - exec:
-                arguments:
-                - ${NAME}.txt
-                command: touch
-                run_if: passed
-            - exec:
-                arguments:
-                - -l
-                command: ls
                 run_if: passed
