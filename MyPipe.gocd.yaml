@@ -27,12 +27,12 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                - $NAME
+                - {{NAME}}
                 command: echo
                 run_if: passed
             - exec:
                 arguments:
-                - ${$NAME}.txt
+                - ${NAME}.txt
                 command: touch
                 run_if: passed
             - exec:
