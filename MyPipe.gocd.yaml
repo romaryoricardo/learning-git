@@ -38,6 +38,5 @@ pipelines:
             - exec:
                 arguments:
                 - -l
-                - ${CWD}
                 command: ls
                 run_if: passed
